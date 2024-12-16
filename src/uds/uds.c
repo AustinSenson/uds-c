@@ -30,6 +30,7 @@ DiagnosticShims diagnostic_init_shims(LogShim log,
     DiagnosticShims shims = {
         log: log,
         send_can_message: send_can_message,
+        
         set_timer: set_timer
     };
     return shims;
@@ -308,7 +309,7 @@ float diagnostic_decode_obd2_pid(const DiagnosticResponse* response) {
             return response->payload[0] * 3;
         case 0xc:
             return (response->payload[0] * 256 + response->payload[1]) / 4.0;
-        case 0xd:
+        case 0xd:     
         case 0x33:
         case 0xb:
             return response->payload[0];
